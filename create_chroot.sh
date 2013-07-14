@@ -48,16 +48,22 @@ create_chroot() {
         sudo rm -rf ${base_chroots_dir}
 	sudo mkdir -p ${chroot_dir}
         echo "Creating chroot ${distrib} in folder ${chroot_dir}"
-        sudo debootstrap --arch i386 ${distrib} ${chroot_dir} http://us.archive.ubuntu.com/ubuntu/
+        sudo debootstrap --include=openssh-server --arch i386 ${distrib} ${chroot_dir} http://us.archive.ubuntu.com/ubuntu/
 }
 
 customize_chroot() {
 	local distrib=$1
 	local chroot_dir=`get_path_to_chroot ${distrib}`
         echo "Customizing chroot"
+        if [ ! -f ${chroot_dir}/etc/ssh/sshd_config ]; then
+		echo "ssh server not installed, where this chroot come from?"
+		exit 1
+        fi
+        sudo sed -i 's/Port 22$/Port 220/' ${chroot_dir}/etc/ssh/sshd_config
         sudo rm -rf ${chroot_dir}/var/cache/apt/archives/*.deb
         sudo cp custom_chroot/stop_chroot.sh ${chroot_dir}/../
         sudo cp custom_chroot/launch_chroot.sh ${chroot_dir}/../
+        sudo cp custom_chroot/init_ssh.sh ${chroot_dir}/
         sudo mkdir ${chroot_dir}/root/.ssh/
 
         sudo cp custom_chroot/id_rsa* ${chroot_dir}/root/.ssh/

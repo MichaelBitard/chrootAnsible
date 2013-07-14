@@ -15,7 +15,7 @@ echo "Launching chroot"
 
 mountFileSystems() {
 	sudo echo -ne "mounting pseudo filesystems:"
-	for pseudo in dev proc sys
+	for pseudo in dev dev/pts proc sys
 	do
 		sudo mount --bind /$pseudo  $root_dir/$pseudo
 		echo -ne " $pseudo"
@@ -28,6 +28,14 @@ mountFileSystems() {
 launchChroot() {
 	#custom root/.bashrc
 	mountFileSystems
-	sudo chroot $root_dir
+	sudo chroot $root_dir /init_ssh.sh
 }
+if [ ! -f $root_dir/root/.ssh/authorized_keys ]; then
+	user=`whoami`
+	USER_HOME=$(getent passwd $user | cut -d: -f6)
+	echo "no ssh key for autolog configured, using default $USER_HOME/.ssh/id_rsa.pub"
+	sudo cp $USER_HOME/.ssh/id_rsa.pub $root_dir/root/.ssh/authorized_keys
+	sudo chmod 600 $root_dir/root/.ssh/authorized_keys
+fi
+
 launchChroot
