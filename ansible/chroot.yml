@@ -1,0 +1,8 @@
+---
+- hosts: 127.0.0.1
+  user: root
+  tasks:
+  - apt: upgrade=dist
+  - apt: pkg=xauth state=installed
+#We allow X11 forwarding
+  - copy: dest=/root/.Xauthority content="" owner=root group=root mode=0600

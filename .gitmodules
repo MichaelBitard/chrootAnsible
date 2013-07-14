@@ -1,0 +1,3 @@
+[submodule "ansible/ansible_sources"]
+	path = ansible/ansible_sources
+	url = https://github.com/ansible/ansible.git
