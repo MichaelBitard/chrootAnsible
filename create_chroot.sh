@@ -48,7 +48,7 @@ create_chroot() {
         sudo rm -rf ${base_chroots_dir}
 	sudo mkdir -p ${chroot_dir}
         echo "Creating chroot ${distrib} in folder ${chroot_dir}"
-        sudo debootstrap --include=openssh-server --arch i386 ${distrib} ${chroot_dir} http://us.archive.ubuntu.com/ubuntu/
+        sudo debootstrap --include=openssh-server,python-apt --arch i386 ${distrib} ${chroot_dir} http://us.archive.ubuntu.com/ubuntu/
 }
 
 customize_chroot() {
@@ -75,8 +75,14 @@ customize_chroot() {
         sudo mv bash.bashrc ${chroot_dir}/etc/bash.bashrc
         sudo chmod 644 ${chroot_dir}/etc/bash.bashrc
 }
+finishChroot() {
+        local distrib=$1
+	echo "Packaging chroot"
+	sudo tar czf ${base_chroots_dir}/${distrib}.tgz ${base_chroots_dir}/${distrib}/
+}
 
 checks
 select_distrib distrib
 create_chroot $distrib
 customize_chroot $distrib
+finishChroot $distrib
