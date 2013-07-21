@@ -11,7 +11,7 @@ for rootProc in /proc/*/root; do
         if [ "x$LINK" != "x" ]; then
                 if [ "x${LINK:0:${#root_dir}}" = "x$root_dir" ]; then
                         # this process is in the chroot...
-                        PID=$(basename $(dirname "$ROOT"))
+                        PID=$(basename $(dirname "$rootProc"))
                         echo "$PID is in the chroot and is associated to `ps -p $PID -o comm=`, killing..."
                         sudo kill -9 "$PID"
                 fi
