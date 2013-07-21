@@ -74,7 +74,7 @@ customize_chroot() {
         sudo echo "TZ='Europe/Paris'; export TZ" >> bash.bashrc
         sudo mv bash.bashrc ${chroot_dir}/etc/bash.bashrc
         sudo chmod 644 ${chroot_dir}/etc/bash.bashrc
-	sudo git clone https://github.com/MichaelBitard/chrootAnsible.git ${base_chroots_dir}/${distrib}/chrootAnsible
+	sudo git clone --recursive https://github.com/MichaelBitard/chrootAnsible.git ${base_chroots_dir}/${distrib}/chrootAnsible
 }
 finishChroot() {
         local distrib=$1
