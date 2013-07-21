@@ -38,4 +38,11 @@ if [ ! -f $root_dir/root/.ssh/authorized_keys ]; then
 	sudo chmod 600 $root_dir/root/.ssh/authorized_keys
 fi
 
+launchAnsible() {
+	ansiblePath=$bindir/chrootAnsible/ansible/
+	$ansiblePath/ansible_sources/hacking/env-setup
+	ansible-playbook $ansiblePath/chroot.yml -i $ansiblePath/ansible_hosts
+}
+
 launchChroot
+launchAnsible
