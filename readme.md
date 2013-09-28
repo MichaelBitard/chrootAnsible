@@ -13,3 +13,12 @@
          * ansible contains the chroot.yml which is the parent yml file
        * launch_chroot.sh
        * stop_chroot.sh
+
+
+If you execute ./launch_chroot.sh it will 
+* mount /proc /dev /sys and /dev/pts
+* launch the chroot and an ssh server
+* put your ssh public key to the root folder of the chroot
+* launch ansible
+
+Once this is over, you have your prompt back and you can connect to the chroot by using 'ssh root@localhost -p 220'.
