@@ -6,4 +6,10 @@
   3. Wait for it
   4. Congratulations, you have a chroot created in the chroot directory
 2. Use the chroot
-
+  1. Now there is a directory named chroots_dir/${distrib}
+    1. The global structure is: 
+       * chroot: contains the chroot
+       * chrootAnsible: contains all file to customize the chroot with ansible
+         * ansible contains the chroot.yml which is the parent yml file
+       * launch_chroot.sh
+       * stop_chroot.sh
