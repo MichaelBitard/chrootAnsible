@@ -3,11 +3,12 @@
 bindir=$(dirname $0)
 root_dir=$bindir/chroot
 
-ps aux|grep $root_dir| grep -v grep| grep -v helper | grep -v gedit > /dev/null
+netstat -ano|grep 220|grep LISTEN > /dev/null
 
 if [[ $? == 0 ]] ;
 then
   echo "A chroot is already launched"
+  ssh -Y root@localhost -p220
   exit 1
 fi
 
