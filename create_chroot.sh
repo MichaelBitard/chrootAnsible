@@ -79,7 +79,8 @@ customize_chroot() {
 finishChroot() {
         local distrib=$1
 	echo "Packaging chroot"
-	sudo tar czf ${base_chroots_dir}/${distrib}.tgz ${base_chroots_dir}/${distrib}/
+	cd ${base_chroots_dir}
+	sudo tar czf ${distrib}.tgz ${distrib}/
 }
 
 checks
