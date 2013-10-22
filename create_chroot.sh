@@ -48,7 +48,7 @@ create_chroot() {
         sudo rm -rf ${base_chroots_dir}
 	sudo mkdir -p ${chroot_dir}
         echo "Creating chroot ${distrib} in folder ${chroot_dir}"
-        sudo debootstrap --include=openssh-server,python-apt --arch i386 ${distrib} ${chroot_dir} http://us.archive.ubuntu.com/ubuntu/
+        sudo debootstrap --include=openssh-server,python-apt,aptitude --arch i386 ${distrib} ${chroot_dir} http://us.archive.ubuntu.com/ubuntu/
 }
 
 customize_chroot() {
