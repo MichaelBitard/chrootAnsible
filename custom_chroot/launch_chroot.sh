@@ -41,7 +41,7 @@ fi
 
 launchAnsible() {
 	ansiblePath=$bindir/chrootAnsible/ansible/
-	$ansiblePath/ansible_sources/hacking/env-setup
+	source $ansiblePath/ansible_sources/hacking/env-setup
 	ansible-playbook $ansiblePath/chroot.yml -i $ansiblePath/ansible_hosts
 }
 
