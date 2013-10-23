@@ -8,7 +8,7 @@ netstat -ano|grep 220|grep LISTEN > /dev/null
 if [[ $? == 0 ]] ;
 then
   echo "A chroot is already launched"
-  ssh -Y root@localhost -p220
+  ssh -X root@localhost -p220
   exit 1
 fi
 
@@ -47,4 +47,4 @@ launchAnsible() {
 
 launchChroot
 launchAnsible
-ssh -Y root@127.0.0.1 -p220
+ssh -X root@127.0.0.1 -p220
