@@ -1,7 +1,11 @@
 ## Setup a chroot with a SSH server running on port 220 and ready to be 'ansiblized'
 
 **Important!**
-You have to clone this repo with --recursive so you clone ansible source (cloned as a submodule) with it
+
+If you clone this repo, add the --recursive option so you clone ansible source (cloned as a submodule) with it:
+```bash
+git clone --recursive git@github.com:MichaelBitard/chrootAnsible.git
+```
 
 ### Prerequisites
 In order for this to work, you must have: 
