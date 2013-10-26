@@ -12,6 +12,13 @@ then
   exit 1
 fi
 
+if [ ! -d "$root_dir" ]
+then
+    echo "no chroot present, creating one"
+    sudo ./util_create_chroot.sh
+    sudo mv $bindir/chroots_dir/*/chroot/ $root_dir
+fi
+
 echo "Launching chroot"
 
 mountFileSystems() {
@@ -40,7 +47,7 @@ if [ ! -f $root_dir/root/.ssh/authorized_keys ]; then
 fi
 
 launchAnsible() {
-	ansiblePath=$bindir/chrootAnsible/ansible/
+	ansiblePath=$bindir/ansible/
 	source $ansiblePath/ansible_sources/hacking/env-setup
 	ansible-playbook $ansiblePath/chroot.yml -i $ansiblePath/ansible_hosts
 }

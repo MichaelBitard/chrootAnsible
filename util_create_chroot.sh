@@ -4,6 +4,8 @@ echo "------------------- USAGES ------------------"
 echo "-- create a minimun chroot based on ubuntu --"
 echo "------------------- USAGES ------------------"
 
+cd $(dirname $0)
+
 readonly base_chroots_dir="chroots_dir"
 
 get_path_to_chroot() {
@@ -61,8 +63,6 @@ customize_chroot() {
         fi
         sudo sed -i 's/Port 22$/Port 220/' ${chroot_dir}/etc/ssh/sshd_config
         sudo rm -rf ${chroot_dir}/var/cache/apt/archives/*.deb
-        sudo cp custom_chroot/stop_chroot.sh ${chroot_dir}/../
-        sudo cp custom_chroot/launch_chroot.sh ${chroot_dir}/../
         sudo cp custom_chroot/init_ssh.sh ${chroot_dir}/
         sudo mkdir ${chroot_dir}/root/.ssh/
 
@@ -74,7 +74,6 @@ customize_chroot() {
         sudo echo "TZ='Europe/Paris'; export TZ" >> bash.bashrc
         sudo mv bash.bashrc ${chroot_dir}/etc/bash.bashrc
         sudo chmod 644 ${chroot_dir}/etc/bash.bashrc
-	sudo git clone --recursive https://github.com/MichaelBitard/chrootAnsible.git ${base_chroots_dir}/${distrib}/chrootAnsible
 }
 finishChroot() {
         local distrib=$1

@@ -1,1 +1,3 @@
 chroots_dir/
+chroot/
+*.swp
