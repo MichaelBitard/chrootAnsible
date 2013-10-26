@@ -1,6 +1,6 @@
 ## Setup a chroot with a SSH server running on port 220 and ready to be 'ansiblized'
 
-### Prerequisites ###
+### Prerequisites
 In order for this to work, you must have: 
 * debootstrap
 * python-jinja2
@@ -11,13 +11,13 @@ For ubuntu, you can copy/paste
  sudo apt-get install debootstrap python-jinja2 python-yaml
 ```
 
-### Usage ###
+### Usage
 Execute ./launch_chroot.sh
 
 If you dont have a chroot initialized, you will be asked to chose which distribution you want to create the chroot from.
 At the end of the setup, ansible will be launched and your chroot configured
 
-#### What the script does #### 
+#### What the script does 
 
 * mount /proc /dev /sys and /dev/pts
 * launch the chroot and an ssh server
@@ -25,7 +25,7 @@ At the end of the setup, ansible will be launched and your chroot configured
 * launch ansible
 * connect via ssh to the chroot
 
-#### Faq ####
+#### Faq
 If you have something like that:
 ```
  @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
