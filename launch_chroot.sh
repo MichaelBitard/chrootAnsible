@@ -3,7 +3,7 @@
 bindir=$(dirname $0)
 root_dir=$bindir/chroot
 
-netstat -ano|grep 220|grep LISTEN|grep -v LISTENING > /dev/null
+netstat -ano|grep ':220 '|grep LISTEN|grep -v LISTENING > /dev/null
 
 if [[ $? == 0 ]] ;
 then
