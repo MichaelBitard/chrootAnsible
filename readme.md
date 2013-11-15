@@ -5,6 +5,7 @@ In order for this to work, you must have:
 * debootstrap
 * python-jinja2
 * python-yaml
+* id_rsa.pub present in your ~/.ssh
 
 For ubuntu, you can copy/paste
 ```bash
