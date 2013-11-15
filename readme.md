@@ -1,12 +1,5 @@
 ## Setup a chroot with a SSH server running on port 220 and ready to be 'ansiblized'
 
-**Important!**
-
-If you clone this repo, add the --recursive option so you clone ansible source (cloned as a submodule) with it:
-```bash
-git clone --recursive git@github.com:MichaelBitard/chrootAnsible.git
-```
-
 ### Prerequisites
 In order for this to work, you must have: 
 * debootstrap
@@ -29,6 +22,7 @@ At the end of the setup, ansible will be launched and your chroot configured
 * mount /proc /dev /sys and /dev/pts
 * launch the chroot and an ssh server
 * put your ssh public key to the root folder of the chroot so you're able to login without password
+** For the moment, you need to have an id_rsa.pub in your ~/.ssh, else it won't work
 * launch ansible
 * connect via ssh to the chroot
 
