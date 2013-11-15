@@ -52,6 +52,17 @@ launchAnsible() {
 	ansible-playbook $ansiblePath/chroot.yml -i $ansiblePath/ansible_hosts
 }
 
+cloneAnsibleIfNotAlreadyDone() {
+	ansiblePath=$bindir/ansible/
+	if [ "$(ls -A ${ansiblePath}/ansible_sources)" ]; then
+		echo "No need to clone ansible submodule"
+	else
+		echo "Ansible submodule needs to be cloned"
+		git submodule update --init
+	fi
+}
+
 launchChroot
+cloneAnsibleIfNotAlreadyDone
 launchAnsible
 ssh -X root@127.0.0.1 -p220
