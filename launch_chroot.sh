@@ -15,6 +15,7 @@ update() {
         sleep 5
         git pull
     fi
+    rm output
 }
 
 if [ "$1" != "no-update" ]
