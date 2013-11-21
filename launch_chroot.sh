@@ -3,6 +3,25 @@
 bindir=$(dirname $0)
 root_dir=$bindir/chroot
 
+
+update() {
+    git fetch -v --dry-run 2> output
+    if grep "up to date" output
+    then
+        echo "no changes to pull"
+    else
+        echo "You are not at the last version, a pull will be made in 5 seconds (CTRL+C to abort)"
+        echo "If you dont want this message, run with ./launch_chroot.sh no-update"
+        sleep 5
+        git pull
+    fi
+}
+
+if [ "$1" != "no-update" ]
+then
+    update
+fi
+
 netstat -ano|grep ':220 '|grep LISTEN|grep -v LISTENING > /dev/null
 
 if [[ $? == 0 ]] ;
