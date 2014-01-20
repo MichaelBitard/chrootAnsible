@@ -15,13 +15,13 @@ For ubuntu, you can copy/paste
 ### Usage
 Execute ./launch_chroot.sh
 
-If you dont have a chroot initialized, you will be asked to chose which distribution you want to create the chroot from.
+If you don't have a chroot initialized, you will be asked to choose which distribution you want to create the chroot from.
 At the end of the setup, ansible will be launched and your chroot configured
 
 #### What the script does 
 
 * mount /proc /dev /sys and /dev/pts
-* launch the chroot and an ssh server
+* launch the chroot and a ssh server
 * put your ssh public key to the root folder of the chroot so you're able to login without password
  * For the moment, you need to have an id_rsa.pub in your ~/.ssh, else it won't work
 * launch ansible
@@ -47,4 +47,4 @@ If you have something like that:
 ```
 
 it means that you probably had another system running on port 220.
-To get rid of this message, simply run the ssh-keygen command promped by the message. In my case, this will be 'ssh-keygen -f "/home/yourhome/.ssh/known_hosts" -R [127.0.0.1]:220', stop your chroot and launch it again.
+To get rid of this message, simply run the ssh-keygen command prompted by the message. In my case, this will be 'ssh-keygen -f "/home/yourhome/.ssh/known_hosts" -R [127.0.0.1]:220', stop your chroot and launch it again.
